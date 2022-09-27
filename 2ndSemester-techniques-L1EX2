@@ -1,0 +1,22 @@
+# include <stdio.h>
+
+int calculaCubo(int);
+
+int main(){
+    int num, cube;
+    printf("Informe um número: ");
+    scanf("%d", &num);
+    cube = calculaCubo(num);
+    printf("O cubo de %d é = %d", num, cube);
+     
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    }
+
+    return 0;
+}
+
+int calculaCubo(int num){
+    return num*num*num;
+}
