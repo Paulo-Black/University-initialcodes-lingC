@@ -1,0 +1,26 @@
+# include <stdio.h>
+
+int calculaFatorial(int);
+
+int main(){
+    int fatorial, num;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+    
+    fatorial = calculaFatorial(num);
+    printf("O fatorial de %d é = %d", num, fatorial);
+
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    } 
+    return 0;
+}
+
+int calculaFatorial(int num){
+    int i, fat=1;
+    for(i=num; i>0; i--){
+        fat = fat*i;
+    }
+    return fat;
+}
