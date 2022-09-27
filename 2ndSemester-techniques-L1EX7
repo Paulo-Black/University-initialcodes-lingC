@@ -1,0 +1,44 @@
+# include <stdio.h>
+
+void line(int);
+int somaIntervalo(int, int);
+
+int main(){
+    int ini, fim, somapar;
+    
+    line(2);
+    printf("\n\tInforme o início do intervalo: ");
+    scanf("%d", &ini);
+    printf("\n\tInforme o final do intervalo: ");
+    scanf("%d", &fim);
+    line(1);
+    somapar = somaIntervalo(ini, fim);
+
+    printf("\n\tA soma dos números pares compreendidos entre %d e %d é = %d\n", ini, fim, somapar);
+    line(2);
+
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    } 
+    return 0;
+}
+
+int somaIntervalo(int inicio, int final){
+    int i, soma=0;
+    
+    for(i=(inicio+1); i<=(final-1); i++){
+        if(i%2==0){
+            soma = soma+i;
+        }
+    }
+    return soma;
+}
+
+void line(int type){ // Essa função é apenas para printar delimitadores. Só pra organizar o terminal :)
+    if(type == 1){
+        printf("|--------------------------------------------------------------------|");
+    } else if(type == 2){
+        printf("|====================================================================|");
+    }
+}
