@@ -1,0 +1,30 @@
+# include <stdio.h>
+# include <math.h>
+
+float arredondaValor(float);
+
+int main(){
+    float num, numredondo;
+    int op;
+    
+    printf("|-------------------------------------------------------|\n");
+    printf("  Informe um número: ");
+    scanf("%f", &num);
+    printf("|-------------------------------------------------------|\n");
+    numredondo = arredondaValor(num);
+    
+    printf("  O valor %.2f, depois de arredondado, é igual a %.2f", num, numredondo);
+    printf("\n|-------------------------------------------------------|\n");
+    
+    while(op != 0){
+        printf("\nDigite 0 para sair: ");
+        scanf("%d", &op);
+    }
+
+    return 0;
+}
+
+float arredondaValor(float num){
+    
+    return round(num);
+}
