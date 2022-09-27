@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+float calculaDesconto(float);
+float calculaJuros(float);
+
+int main(){
+    int op;
+    float val, juros, desconto;
+    printf("|-------------------|");
+    printf("\n| [1] Desconto      |");
+    printf("\n| [2] Juros         |");
+    printf("\n|-------------------|");
+    printf("\n| Sua escolha: ");
+    scanf("%d", &op);
+    
+    printf("\nAgora informe o valor: ");
+    scanf("%f", &val);
+    
+    if(op==1){
+        desconto = calculaDesconto(val);
+        printf("\n\nO valor %.2f com 50/100 de desconto aplicado é igual a: %.2f", val, desconto);
+    } else if(op==2){
+        juros = calculaJuros(val);
+        printf("\n\nO valor %.2f com 50/100 de juros aplicado é igual a: %.2f", val, juros);
+    } else{
+        printf("\n\nEssa opção não existe.");
+    }
+
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    } 
+  
+    return 0;
+}
+
+float calculaDesconto(float val){
+    return val/2;
+}
+float calculaJuros(float val){
+    return val+val/2;
+}
