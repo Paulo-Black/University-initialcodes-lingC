@@ -1,0 +1,27 @@
+# include <stdio.h>
+
+int maiorval(int n1,int n2);
+
+int main(){
+    int n1, n2, maior;
+    printf("Informe o primerio valor: ");
+    scanf("%d", &n1);
+    printf("Informe o segundo valor: ");
+    scanf("%d", &n2);
+    maior = maiorval(n1, n2);
+    printf("O maior valor informado foi: %d", maior);
+
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    } 
+    return 0;
+}
+
+int maiorval(int n1, int n2){
+    if(n1>n2){
+        return n1;
+    } else{
+        return n2;
+    }
+}
