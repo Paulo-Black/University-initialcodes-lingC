@@ -1,0 +1,42 @@
+# include <stdio.h>
+
+int line(int);
+void calculaConsumo(int, int);
+
+int main(){
+    int pessoas, copos, dias;
+    
+    line(2);
+    printf("\nInforme a quantidade de pessoas: ");
+    scanf("%d", &pessoas);
+    printf("\nCopos utilizados por pessoa no dia: ");
+    scanf("%d", &copos);
+    printf("\nInforme a quantidade de dias: ");
+    scanf("%d", &dias);
+    line(1);
+    
+    calculaConsumo(copos, pessoas);
+    
+    while(op != 0){ 
+        printf("\nDigite 0 para sair: "); 
+        scanf("%d", &op); 
+    } 
+    return 0;
+}
+
+void calculaConsumo(int copos, int pessoas){
+    printf("\n| ----- Consumo de copos plásticos ----- |");
+    printf("\n| Por dia:     %d", copos*pessoas);
+    printf("\n| Por semana:  %d", (copos*7)*pessoas);
+    printf("\n| Por mês:     %d", (copos*30)*pessoas);
+    printf("\n| Por ano:     %d", (copos*365)*pessoas);
+    line(2);
+}
+
+int line(int type){
+    if(type==1){
+        printf("\n|----------------------------------------|\n");
+    } else if(type==2){
+        printf("\n|========================================|\n");
+    }
+}
