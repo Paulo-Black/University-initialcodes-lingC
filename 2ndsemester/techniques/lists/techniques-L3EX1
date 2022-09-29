@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void triplicaValor(int *vl);
+
+int main(){
+    int num, op;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+    
+    // Usamos o '&' para passar o endereço da var.
+    triplicaValor(&num);
+    printf("%d", num);
+
+    // Apenas para o programa não desligar derrepente
+    while(op != 0){  
+        printf("\nDigite 0 para sair: ");  
+        scanf("%d", &op);  
+    }
+
+    return 0;
+}
+
+void triplicaValor(int *vl){
+    // Aqui devemos nos lembrar de sempre manipular;
+    // variável como ponteiro, usando o '*'.
+    *vl = *vl * 3;
+}
