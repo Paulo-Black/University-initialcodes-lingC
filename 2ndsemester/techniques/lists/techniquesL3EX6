@@ -1,0 +1,42 @@
+/*************************************************************************
+Escreva um programa que preencha dois vetores de 5 posições com valores
+inteiros e chame uma função chamada mesclaVetores, que faz a mescla dos
+vetores em um terceiro vetor. A função deve ter retorno void e utilizar 
+parâmetros de referência. Imprima o resultado na função main.
+**************************************************************************/
+#include <stdio.h>
+
+void mesclaVetores(int vetA[], int VetB[], int VetC[]);
+
+int main()
+{
+    int i, vet1[5], vet2[5], vet3[10];
+    
+    for(i=0; i<5; i++){
+        printf("Informe o valor da posição %d do vet1: ", i);
+        scanf("%d", &vet1[i]);
+        printf("Informe o valor da posição %d do vet2: ", i);
+        scanf("%d", &vet2[i]);
+    }
+    
+    mesclaVetores(vet1, vet2, vet3);
+    
+    for(i=0; i<10; i++){
+        printf("\n%d", vet3[i]);
+    }
+
+    // Apenas para o programa não desligar derrepente 
+    while(op != 0){  
+        printf("\nDigite 0 para sair: ");  
+        scanf("%d", &op);  
+    }
+    return 0;
+}
+
+void mesclaVetores(int VetA[]; vetB[]; vetC[]){
+    int i;
+    for(i=0; i<5; i++){
+        vetC[i] = vetA[i];
+        vetC[i+5] = vetB[i];
+    }
+}
