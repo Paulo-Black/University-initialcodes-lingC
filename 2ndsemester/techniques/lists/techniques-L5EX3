@@ -1,0 +1,97 @@
+#include <stdio.h> 
+#include <string.h> 
+struct bookdata{  
+    char title[50];  
+    int numpages;  
+    int yrelease;  
+};  
+typedef struct bookdata book;
+ 
+int line(int);  
+void menu();
+
+int main(){  
+    int limite, i, opc=0, maxpage, resultados;
+    char titlesearch[50];  
+      
+    // Aqui iremos definir o limite de livros que serão cadastrados.  
+    line(2);  
+    printf("| Informe o número de livros que deseja cadastrar: ");  
+    scanf("%d", &limite);  
+    book livro[limite]; /* Definindo a variável da estrutura depois de pedir  
+    ao usuário o tamanho limite. */  
+      
+    line(2);  
+    printf("|                  CADASTRO DE LIVROS                 |");  
+    for(i=0; i<limite; i++){  
+        fflush(stdin);
+		line(1);  
+        printf("| TITULO DO LIVRO: "); 
+		scanf("%s", livro[i].title); 
+        fgets(livro[i].title, 50, stdin);
+        printf("\n| NUMERO DE PAGINAS: ");  
+        scanf("%d", &livro[i].numpages);  
+        printf("\n| LANÇAMENTO: ");  
+        scanf("%d", &livro[i].yrelease);  
+    }  
+    
+	 
+    while(opc!=3) {  
+        menu();  
+        printf("| SUA ESCOLHA: ");  
+        scanf("%d", &opc);  
+        line(1);  
+          
+        switch(opc){  
+            case 1:
+            	fflush(stdin);
+                printf("| TITULO DO LIVRO: ");  
+                fgets(livro[i].title, 50, stdin);
+                line(1);
+                printf("|                     RESULTADOS                      |");
+                for(i=0; i<limite; i++){
+                	
+                    if(strcmp(livro[i].title, titlesearch)==0){ 
+                        line(1); 
+                        printf("TITULO DO LIVRO: %s", livro[i].title);  
+                        printf("\nNUMERO DE PAGINAS: %d", livro[i].numpages);  
+                        printf("\nDATA DE LANÇAMENTO: %d", livro[i].yrelease);
+                        resultados =+ 1;
+                    } 
+                }
+            break;  
+            case 2:  
+                printf("| INFORME O NÚMERO DE PAGINAS: ");  
+                scanf("%d", &maxpage);  
+                line(2);  
+                printf("|            LIVROS COM ATÉ %d PAGINAS             ", maxpage);  
+                  
+                for(i=0; i<limite; i++){  
+                    if(livro[i].numpages <= maxpage){  
+                        line(1);  
+                        printf("TITULO DO LIVRO: %s", livro[i].title);  
+                        printf("\nNUMERO DE PAGINAS: %d", livro[i].numpages);  
+                        printf("\nDATA DE LANÇAMENTO: %d", livro[i].yrelease);
+                    }  
+                }  
+            break;  
+        }  
+    }  
+      
+    return 0;  
+}  
+int line(int type){  
+    // funçãozinha para facilitar o uso de divisórias ao longo do código.  
+    if(type == 1){  
+        printf("\n|-----------------------------------------------------|\n");  
+    } else{  
+        printf("\n|=====================================================|\n");  
+    }  
+}  
+void menu(){  
+    line(2);  
+    printf("| [1] PESQUISAR TÍTULO                                |\n");  
+    printf("| [2] PESQUISAR POR NÚMERO DE PÁGINAS                |\n");  
+    printf("| [3] SAIR                                          |");  
+    line(1);  
+}
