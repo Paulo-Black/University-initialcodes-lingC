@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+struct studentdata {
+    char name[50];
+    char curso[50];
+    double nota1;
+    double nota2;
+    double media;
+};
+
+typedef struct studentdata stud;
+int line(int);
+
+int main(){
+    stud aluno;
+    line(2);
+    fflush(stdin);
+    printf("\n| Informe o nome do aluno: ");
+    fgets(aluno.name, 50, stdin);
+    printf("| Informe o curso do aluno: ");
+    fgets(aluno.curso, 50, stdin);
+    line(1);
+    printf("\n| Informe a primeira nota do aluno:");
+    scanf("%lf", &aluno.nota1);
+    printf("| Informe a segunda nota do aluno: ");
+    scanf("%lf", &aluno.nota2);
+    aluno.media = (aluno.nota1+aluno.nota2)/2;
+    line(2);
+    printf("\n\t\tDADOS DO ALUNO ");
+    line(1);
+    printf("\n| NOME: %s", aluno.name);
+    printf("\n| CURSO: %s", aluno.curso);
+    printf("\n| NOTA 1: %.2lf", aluno.nota1);
+    printf("\n| NOTA 2: %.2lf", aluno.nota2);
+    printf("\n| MEDIA: %.2f", aluno.media);
+    line(2);
+    
+    return 0;
+}
+
+int line(int type){
+    /* gosto de fazer essa função apenas para facilitar a 
+    exibição de divisórias ao longo do código. */
+    if(type==1){
+        printf("\n|-------------------------------------------------|");
+    }else if(type==2){
+        printf("\n|=================================================|");
+    }
+}
