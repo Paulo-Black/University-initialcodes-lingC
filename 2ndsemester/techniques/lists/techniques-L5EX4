@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <string.h>
+
+void line(int);
+void menu();
+
+struct seriesdata {
+    /* Estrutura para armazenar os dados de um série */
+    char name[50];
+    int qtdtemp;
+    int ep_portemp;
+    int eptot;
+};
+
+typedef struct seriesdata seriedata;
+
+int main(){
+    seriedata serie[5];
+    int i, opc=0, posicao=0;
+    
+    /* O laço de repetição abaixo é para o povoamento do vetor de registro */
+    for(i=0; i<5; i++){
+        line(1);
+        fflush(stdin);
+        printf("| NOME DA SERIE: ");
+        fgets(serie[i].name, 50, stdin);
+        printf("| NUMERO DE TEMPORADAS: ");
+        scanf("%d", &serie[i].qtdtemp);
+        printf("| EPSODIOS/TEMPORADA: ");
+        scanf("%d", &serie[i].ep_portemp);
+        /* Abaixo eu já realizo a atribuição de valor no campo "eptot", onde o 
+        objetivo é guardar a quantidade total de epsódios por meio da 
+        multiplicação entre qtd de temporadas e qtd de epsódios/temporada.*/
+        serie[i].eptot = serie[i].qtdtemp * serie[i].ep_portemp;
+    }
+    
+    /* Laço while para manter o usuário no programa até que ele escolha sair*/
+    while(opc!=4){
+        menu();
+        printf("| SUA ESCOLHA: ");
+        scanf("%d", &opc);
+        
+        switch(opc){
+            case 1:
+            	/* minha ideia foi fazer uma verificação "série por série" usando um laço for e 
+				SALVAR a posição que série com mais temporadas ocupa no vetor.*/
+				for(i=1; i<5; i++){
+					if(serie[i-1].qtdtemp < serie[i].qtdtemp){
+						posicao = i;
+						/* Como a variável "posicao" já se inicia com a posicao 0, eu apenas 
+						verifico se as outras posições do vetor possui um número de temporadas 
+						maior. Caso isso aconteça, O VALOR DA VAR "posicao" é trocado pela posição 
+						que possui mais temporadas. Com isso, basta utilizar a variável "posicao" 
+						para printar os dados da struct.*/					
+					}
+				}
+
+				line(1);
+				printf("| NOME DA SERIE: %s", serie[posicao].name);
+				printf("\n| QUANTIDADE DE TEMPORADAS: %d", serie[posicao].qtdtemp);
+				printf("\n| QUANTIDADE DE EPISODIOS POR TEMPORADA: %d", serie[posicao].ep_portemp);
+				printf("\n| QUANTIDADE DE EPISODIOS TOTAIS: %d", serie[posicao].eptot);
+				line(2);
+            break;
+            case 2:
+                /* Usei a mesma lógica da opção 1.
+				OBS: como a parte de printar dados da serie é igual, eu pensei em fazer uma função,
+				mas não sei passar estruturas por parâmetro e não consegui achar algo didático na internet.*/
+				for(i=1; i<5; i++){
+					if(serie[i-1].ep_portemp < serie[i].ep_portemp){
+						posicao = i;
+					}
+				}
+				line(1);
+				printf("| NOME DA SERIE: %s", serie[posicao].name);
+				printf("\n| QUANTIDADE DE TEMPORADAS: %d", serie[posicao].qtdtemp);
+				printf("\n| QUANTIDADE DE EPISODIOS POR TEMPORADA: %d", serie[posicao].ep_portemp);
+				printf("\n| QUANTIDADE DE EPISODIOS TOTAIS: %d", serie[posicao].eptot);
+				line(2);				               
+            break;
+            case 3:
+                // opção da serie com maior numero de epsódios totais;
+                for(i=1; i<5; i++){
+					if(serie[i-1].eptot < serie[i].eptot){
+						posicao = i;
+					}
+				}
+				line(1);
+				printf("| NOME DA SERIE: %s", serie[posicao].name);
+				printf("\n| QUANTIDADE DE TEMPORADAS: %d", serie[posicao].qtdtemp);
+				printf("\n| QUANTIDADE DE EPISODIOS POR TEMPORADA: %d", serie[posicao].ep_portemp);
+				printf("\n| QUANTIDADE DE EPISODIOS TOTAIS: %d", serie[posicao].eptot);
+				line(2);
+            break;
+        }
+        
+    }
+    return 0;
+}
+
+void line(int type){
+    /* Essa função é para facilitar o usu de divisórias durante o código.
+    Nela eu recebo como parâmetro um número inteiro, onde 1 significa linhas 
+    simples e 2 significa linhas duplas.*/
+    if(type==1){
+        printf("\n|-----------------------------------------------------|\n");
+    } else{
+        printf("\n|=====================================================|\n");
+    }
+}
+
+void menu() {
+    /* Função para printar o menu e deixar a função main mais limpa. */
+    line(2);
+    printf("| [1] SERIES COM MAIS TEMPORADAS                      |\n");
+    printf("| [2] SERIES COM MAIS EPSODIOS POR TEMPORADA          |\n");
+    printf("| [3] SERIES COM MAIOR NUMERO DE EPSODIOS TOTAIS      |\n");
+    printf("| [4] SAIR DO PROGRAMA                                |");
+    line(1);
+}
