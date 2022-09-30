@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <string.h>
+
+struct citydata{
+	char name[50];
+	char state[3];
+	int population;
+};
+
+typedef struct citydata citydata;
+
+void line(int);
+void menu();
+
+int main(){
+	citydata city[4];
+	int i, opc=0;
+	char statesearch[3];
+	
+	// Laço for para registrar as cidades
+	line(2);
+	printf("|                  REGISTRO DE CIDADES                  |\n");
+	for(i=0; i<4; i++){
+		line(1);
+		printf("| NOME DA CIDADE %d: ", i+1);
+		fflush(stdin);
+		fgets(city[i].name, 50, stdin);
+		printf("| SIGLA DO ESTADO: ");
+		scanf("%s", city[i].state);
+		printf("| POPULACAO TOTAL: ");
+		scanf("%d", &city[i].population);
+	}
+	
+	while(opc!=3){ // Laço while para manter o usuário no programa até que ele decida sair
+		menu();
+		printf("| Sua escolha: ");
+		scanf("%d", &opc);
+		
+		switch(opc){
+			case 1:
+				line(1);
+				printf("| Informe a sigla do estado: ");
+				scanf("%s", statesearch);
+				line(1);
+				printf("\n\n");
+				
+				line(2);
+				printf("|                  CIDADES ENCONTRADAS                  |\n");
+				for(i=0; i<4; i++){
+					/* aqui será feita a comparação entre a sigla que o User digitou e a sigla que foi registrada no registro (isso é considerado pleonasmo? :V)*/
+					if(strcmp(city[i].state, statesearch)==0){
+						line(1);
+						printf("| NOME DA CIDADE: %s", city[i].name);
+						printf("| ESTADO: %s", city[i].state);
+						printf("\n| POPULAÇÃO: %d habitantes\n", city[i].population);
+					}
+				}
+				line(2);
+			break;
+			case 2:
+				line(2);
+				printf("|                  CIDADES ENCONTRADAS                  |\n");				
+				for(i=0; i<4; i++){
+					if(city[i].population > 50000){ // aqui iremos verificar se o campo "Population" possui mais de 50000
+						line(1);
+						printf("| NOME DA CIDADE: %s", city[i].name);
+						printf("| ESTADO: %s", city[i].state);
+						printf("\n| POPULAÇÃO: %d habitantes\n", city[i].population);
+					}
+				}
+				line(2);
+			break;
+		}
+	}
+	
+	return 0;
+}
+
+void line(int type){
+	// minha querida função de divisórias, para printar delimitadores pelo terminal.
+	if(type == 1){
+		printf("|-------------------------------------------------------|\n");
+	} else{
+		printf("|=======================================================|\n");
+	}
+}
+
+void menu(){ // função void para apresentar menu.
+	line(2);
+	printf("| [1] PESQUISAR POR ESTADO                              |");
+	printf("\n| [2] CIDADES COM MAIS DE 50 MIL HABITANTES             |");
+	printf("\n| [3] SAIR                                              |\n");
+	line(1);
+}
