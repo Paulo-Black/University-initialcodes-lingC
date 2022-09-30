@@ -1,0 +1,97 @@
+#include <stdio.h>
+struct cardata{
+    char marca[20];
+    int ano;
+    double preco;
+};
+typedef struct cardata car;
+
+
+
+int line(int);
+void menu();
+
+
+
+int main(){
+        car carro[6];
+        int i, op=0, anolimite;
+        double vallimite;
+        
+        /* Essa estrutura de repetição irá coletar os dados dos veículos e irá
+        guardar num vetor de structs. */
+        for(i=0; i<6; i++){
+        	fflush(stdin);
+            line(1);
+            printf("\n| Informe a marca do carro %d: ", i+1);
+            fgets(carro[i].marca, 50, stdin);
+            printf("\n| Informe o ano do carro %d: ", i+1);
+            scanf("%d", &carro[i].ano);
+            printf("\n| Informe o valor do carro %d: ", i+1);
+            scanf("%lf", &carro[i].preco);
+            line(1);
+        }
+        
+        /* Aqui a estrutura de repetição "while" irá repetir o menu até que o
+        usuário escolha sair. */
+        while(op!=3){
+           menu();
+           printf("\n| Sua escolha: ");
+           scanf("%d", &op);
+           
+           /* O switch é para realizar as ações solicitadas pelo usuário 
+           a partir do email. */
+           switch(op){
+                case 1:
+                    printf("\n| Informe o ano limite: ");
+                    scanf("%d", &anolimite);
+                    line(2);
+                    printf("\n\tCARROS DO ANO %d", anolimite);
+                    
+                    /* Essa estrutura de repetição irá fazer a verificação
+                    dos carros referente à sua posição no vetor de struct.*/
+                    for(i=0; i<6; i++){
+                        if(carro[i].ano == anolimite){
+                            line(1);
+                            printf("\n| MARCA: %s", carro[i].marca);
+                            printf("\n| ANO: %d", carro[i].ano);
+                            printf("\n| VALOR: %.2lf", carro[i].preco);
+                        }
+                    }
+                break;
+                case 2:
+                    printf("\n| Informe o valor limite: ");
+                    scanf("%lf", &vallimite);
+                    line(2);
+                    printf("\n\tCARROS DE ATÉ R$%.2lf", vallimite);
+                    
+                    /* Essa estrutura "for" irá fazer a mesma coisa da estrutura
+                    acima. */
+                    for(i=0; i<6; i++) {
+                        if(carro[i].preco <= vallimite){
+                            line(1);
+                            printf("\n| MARCA: %s", carro[i].marca);
+                            printf("\n| ANO: %d", carro[i].ano);
+                            printf("\n| VALOR: %.2lf", carro[i].preco);
+                        }
+                    }
+                break;
+            }
+        }
+        
+    return 0;
+}
+int line(int type){
+    if(type==1){
+        printf("\n|---------------------------------------------|");
+    } else{
+        printf("\n|=============================================|");
+    }
+}
+void menu(){
+    line(2);
+    printf("\n| [1] Pesquisar carros pelo ano");
+    printf("\n| [2] Pesquisar carros pelo valor");
+    printf("\n| [3] SAIR");
+    line(1);
+}
